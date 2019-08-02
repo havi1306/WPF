@@ -1,0 +1,33 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LoginDemo_WPF"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:Model="clr-namespace:LoginDemo_WPF.Model" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:Data="clr-namespace:LoginDemo_WPF.Data" x:Class="LoginDemo_WPF.Welcome"
+        mc:Ignorable="d"
+        Title="Welcome" Height="550" Width="800" Loaded="Welcome_Load">
+    <Window.Resources>
+        <dx:EntitySimpleDataSource x:Key="EntitySimpleDataSource" ContextType="{x:Type Data:LOGINEntities}" Path="TB_USER">
+            <dx:DesignDataManager.DesignData>
+                <dx:DesignDataSettings RowCount="5"/>
+            </dx:DesignDataManager.DesignData>
+        </dx:EntitySimpleDataSource>
+    </Window.Resources>
+    <Window.DataContext>
+        <Model:User/>
+    </Window.DataContext>
+
+    <dxg:GridControl x:Name="gridControl1" AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" ItemsSource="{Binding Data, Source={StaticResource EntitySimpleDataSource}}">
+        <dxg:GridControl.View>
+            <dxg:TableView ShowTotalSummary="True"/>
+        </dxg:GridControl.View>
+        <dxg:GridColumn FieldName="IdUser" Binding="{Binding IdUser}" IsSmart="True"/>
+        <dxg:GridColumn FieldName="UserName"  Binding="{Binding UserName}" IsSmart="True"/>
+        <dxg:GridColumn FieldName="PassWord"  Binding="{Binding PassWord}" IsSmart="True"/>
+        <dxg:GridColumn FieldName="FirstName"  Binding="{Binding FirstName}" IsSmart="True"/>
+        <dxg:GridColumn FieldName="LastName"  Binding="{Binding LastName}" IsSmart="True"/>
+        <dxg:GridColumn FieldName="Age"  Binding="{Binding Age}" IsSmart="True"/>
+        <dxg:GridColumn FieldName="Email"  Binding="{Binding Email}" IsSmart="True"/>
+    </dxg:GridControl>
+</Window>
